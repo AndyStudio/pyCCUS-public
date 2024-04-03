@@ -16,7 +16,7 @@ This repository is developed/designed by Yunan Li from SUETRI-A research group a
 **Goal**: find the best injector trajectory to
 - Minimize CO2 plume size
 - Minimize pressure change in subsurface
-- Minimize pressure responses at the fault cautious zone in subsurface
+- Minimize pressure responses within the fault cautious zone in subsurface
 
 ### Fate of all cases measured by chosen evaluation metrics.
 
