@@ -18,9 +18,10 @@ This repository is developed/designed by Yunan Li from SUETRI-A research group a
 - Minimize pressure change in subsurface
 - Minimize pressure responses at the fault cautious zone in subsurface
 
-### Fate of all cases measured by chosen evaluation metrics
+### Fate of all cases measured by chosen evaluation metrics.
 
-![GCS-wellopt-animation-clip](https://github.com/AndyStudio/pyCCUS/assets/39730681/75523dc3-5ff8-4ccf-a212-331927c170f2)
+![GCS-wellopt-animation-clip](https://github.com/AndyStudio/pyCCUS-public/assets/39730681/123c9dd9-deb6-4e89-b2d3-1765b5d229ba)
+
 
 **Notation**
 - Color of bubbles: maximum pressure build-up within the fault cautious zone.
@@ -33,7 +34,8 @@ This repository is developed/designed by Yunan Li from SUETRI-A research group a
 
 ### Monitoring saturation plume growth throughout GCS projects.
 
-![GCS-InSAR-SG](https://github.com/AndyStudio/pyCCUS/assets/39730681/9db062a7-fb75-451d-ae9b-67da5c6de73b)
+![GCS-InSAR-SG](https://github.com/AndyStudio/pyCCUS-public/assets/39730681/be245ec8-460c-4595-8415-999778822ff1)
+
 
 **Notation**
 - InSAR images represent the measured land surface movements (in unit of mm).
@@ -43,9 +45,10 @@ This repository is developed/designed by Yunan Li from SUETRI-A research group a
 <!-- - Threshold is defined to be irreducible gas saturation to deliniate the plume. -->
 
 
-### Pressure change (pressure build-up for GCS assets) surveillance through InSAR observations
+### Pressure change (pressure build-up for GCS assets) surveillance through InSAR observations.
 
-![GCS-InSAR-dPRES](https://github.com/AndyStudio/pyCCUS/assets/39730681/e6eb14ae-6f43-40c9-9738-8d38e40f39f5)
+![GCS-InSAR-dPRES](https://github.com/AndyStudio/pyCCUS-public/assets/39730681/36fde3e0-a5ea-4924-8db2-4b9014830162)
+
 
 **Notation**
 - InSAR images represent the measured land surface movements (in unit of mm).
