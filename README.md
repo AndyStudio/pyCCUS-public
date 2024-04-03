@@ -8,17 +8,6 @@ This repository is developed/designed by Yunan Li from SUETRI-A research group a
 - Please feel free to reach out if you need additional support, and we are happy to help :)
 - Contact: yunanli@stanford.edu / ylistanford@gmail.com
 
-## pyCCUS overview
-
-- Automate large number of simulations needed to analyze Geological Carbon Storage (GCS) outcomes. 
-- The post-processing and analysis component of this toolbox computes evaluation metrics and outcomes dynamically from numerical simulation results. 
-- Support the CUSP project for CCUS (Carbon Capture, Utilization, and Storage). 
-- This toolbox interacts with the commercial software CMG so that the numerical model is parsed by CMG for computations. 
-
-**The overview of this workflow with essential components is noted.**
-
-![Fig4](https://github.com/AndyStudio/pyCCUS-public/assets/39730681/3cb6de68-d3f6-47e4-aaf4-238e030d4ad9)
-
 
 
 # Selected outcomes for demonstration
@@ -62,6 +51,20 @@ This repository is developed/designed by Yunan Li from SUETRI-A research group a
 - Ground truth represents the computational results from numerical simulation.
 - AI prediction is the outcome of our pre-trained image-to-image model given InSAR images for a field case.
 - Color of black represents area within the footprints of pressure change.
+
+
+
+# pyCCUS overview
+
+- Automate large number of simulations needed to analyze Geological Carbon Storage (GCS) outcomes. 
+- The post-processing and analysis component of this toolbox computes evaluation metrics and outcomes dynamically from numerical simulation results. 
+- Support the CUSP project for CCUS (Carbon Capture, Utilization, and Storage). 
+- This toolbox interacts with the commercial software CMG so that the numerical model is parsed by CMG for computations. 
+
+**The overview of this workflow with essential components is noted.**
+
+![Fig4](https://github.com/AndyStudio/pyCCUS-public/assets/39730681/3cb6de68-d3f6-47e4-aaf4-238e030d4ad9)
+
 
 
 ## Structure and highlights
