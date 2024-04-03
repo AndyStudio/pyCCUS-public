@@ -22,6 +22,5 @@ The numerical simulation results are extracted from CMG to Python for post-proce
 ### Test to update a gif or mov
 
 
-https://github.com/AndyStudio/pyCCUS-public/assets/39730681/ea6f7410-09db-4457-8dc2-a00951170be5
 
-![GCS_wellopt_animation_clip](https://github.com/AndyStudio/pyCCUS-public/assets/39730681/d40b465d-cb20-4da5-9e8b-fae7b0972c23)
+![GCS-wellopt-animation-clip](https://github.com/AndyStudio/pyCCUS-public/assets/39730681/2e162f79-d927-49d0-b5e8-e354f691d531)
