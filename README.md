@@ -24,3 +24,4 @@ The numerical simulation results are extracted from CMG to Python for post-proce
 
 https://github.com/AndyStudio/pyCCUS-public/assets/39730681/ea6f7410-09db-4457-8dc2-a00951170be5
 
+![GCS_wellopt_animation_clip](https://github.com/AndyStudio/pyCCUS-public/assets/39730681/d40b465d-cb20-4da5-9e8b-fae7b0972c23)
