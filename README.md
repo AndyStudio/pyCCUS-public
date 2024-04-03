@@ -40,6 +40,7 @@ This repository is developed/designed by Yunan Li from SUETRI-A research group a
 - Ground truth represents the computational results from numerical simulation.
 - AI prediction is the outcome of our pre-trained image-to-image model given InSAR images for a field case.
 - Color of black represents area within the plume of saturaiton.
+- Threshold is defined to be irreducible gas saturation to deliniate the plume.
 
 
 ### Pressure change (pressure build-up for GCS assets) surveillance through InSAR observations
@@ -51,6 +52,7 @@ This repository is developed/designed by Yunan Li from SUETRI-A research group a
 - Ground truth represents the computational results from numerical simulation.
 - AI prediction is the outcome of our pre-trained image-to-image model given InSAR images for a field case.
 - Color of black represents area within the footprints of pressure change.
+- Threshold is defined to be 1 MPa as an example to describe pressure footprints.
 
 
 
