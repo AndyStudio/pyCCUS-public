@@ -34,7 +34,7 @@ This repository is developed/designed by Yunan Li from SUETRI-A research group a
 
 ### Monitoring saturation plume growth throughout GCS projects.
 
-![GCS-InSAR-SG](https://github.com/AndyStudio/pyCCUS-public/assets/39730681/be245ec8-460c-4595-8415-999778822ff1)
+![SG-with-yr](https://github.com/AndyStudio/pyCCUS-public/assets/39730681/32f59e90-eb3c-494d-a638-0347303c87d5)
 
 
 **Notation**
@@ -47,7 +47,7 @@ This repository is developed/designed by Yunan Li from SUETRI-A research group a
 
 ### Pressure change (pressure build-up for GCS assets) surveillance through InSAR observations.
 
-![GCS-InSAR-dPRES](https://github.com/AndyStudio/pyCCUS-public/assets/39730681/36fde3e0-a5ea-4924-8db2-4b9014830162)
+![PRES-with-yr](https://github.com/AndyStudio/pyCCUS-public/assets/39730681/0a351ef0-624d-4c9b-b966-466453d944aa)
 
 
 **Notation**
