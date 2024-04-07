@@ -101,7 +101,7 @@ This repository is developed/designed by Yunan Li from SUETRI-A research group a
 - History match to calibrate numerical model and reduce simulation uncertainties.
 
 ## pyCCUS structure
-"""
+""" bash
 |____cmg_models
 | |____SPR_CCS_case130_cartesian.dat
 | |____wrtcmgdat_h2_rxns.py
