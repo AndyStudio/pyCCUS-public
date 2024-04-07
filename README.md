@@ -100,6 +100,184 @@ This repository is developed/designed by Yunan Li from SUETRI-A research group a
 - Global sensitivity analysis.
 - History match to calibrate numerical model and reduce simulation uncertainties.
 
+## pyCCUS structure
+"""
+|____cmg_models
+| |____SPR_CCS_case130_cartesian.dat
+| |____wrtcmgdat_h2_rxns.py
+| |____wrtcmgdat_SPR_CCS_field6x6.py
+| |____SPR_CCS_simplified.dat
+| |____SPR_CCS_case130.dat
+|____.DS_Store
+|____LICENSE
+|____environment.yml
+|____2_AE_dimension_reduction
+| |____AE_DGSA.ipynb
+| |____AE_rst_viz.ipynb
+| |____AE_disp_SA2.py
+|____4_HM_InSAR
+| |____CMG_cartesian_grids.ipynb
+|______init__.py
+|____utils
+| |____GSLIB_Petrel_remain_problems.ipynb
+| |____rwo2csv.ipynb
+| |____pySherlock.py
+| |____history_match.py
+| |____pyCMG_Results.py
+| |____SPR_data_visualization.ipynb
+| |____pyCMG_Control.py
+| |______init__.py
+| |____kh_plot_for_Raji.py
+| |____wrt_cmgrwd_exe.py
+| |____pyCMG_Model.py
+| |____read_gslib.ipynb
+| |____CCS_plume_from_CMG.ipynb
+| |____pyCMG_Visualization.py
+| |____read_petrel.py
+| |____CCS_plume_from_CMG-WRM2023.ipynb
+| |____pySanity_Check.py
+| |____pyCMG_Simulator.py
+|____2_GlobalSA_InSAR
+| |____GlobalSA_exp2new_3D_fullmat.ipynb
+| |____GlobalSA_all_in_npy_orgdata.ipynb
+| |____.DS_Store
+| |____RS_syntheticInSAR.ipynb
+| |____GlobalSA_generate_datfiles.ipynb
+|____pyCMG_copyright_v1.docx
+|____CMG
+| |____utils
+|____README.md
+|____1_SPEJ_injector_opt
+| |____SPEWRM_wellopt_UQ.ipynb
+| |____SPEWRM_wellopt_exp3_allcases.ipynb
+| |____WellOpt_trajectory_viz.ipynb
+| |____WellOpt_npy2csv_UQ_inj.ipynb
+| |____RS_verdispgeo_rst2npy.ipynb
+| |____WellOpt_npy2csv_UQ_rock.ipynb
+| |____kphi_realizations.ipynb
+| |____CCS_injection_schemes.ipynb
+| |____SanityCheck_outfiles.ipynb
+| |____WellOpt_traj_petrophysics.ipynb
+| |____SPEJ_wellopt_exp3.ipynb
+| |____SPEJ_wellopt_UQ.ipynb
+| |____SPEJ_well_optimization_rst.ipynb
+| |____WellOpt_npy2csv_exp3_batch.ipynb
+| |____WellOpt_trajectory_design.ipynb
+|____sample_data
+| |____analytic_params.npy
+|____pyDGSA_dev
+| |____tutorial_detailed.ipynb
+| |____plot.py
+| |____tutorial_short.ipynb
+| |____LICENSE
+| |____interact_util.py
+| |______init__.py
+| |____MANIFEST.in
+| |____README.md
+| |____dgsa.py
+| |____setup.py
+| |____cluster.py
+|____.gitignore
+|____0_demo
+| |____CCS_injection_horizon_18n30yrs.ipynb
+| |____dev_HM_InSAR_rst_exp2.ipynb
+| |____.DS_Store
+| |____SC_simfiles.ipynb
+| |____Transformer_demo.ipynb
+| |____SPR_data_visualization.ipynb
+| |____CCS_analysis_singlecase.ipynb
+| |______init__.py
+| |____demo_H2_gasification_HMcase1.ipynb
+| |____CCS_simrst_animation.ipynb
+| |____dev_gstats_realization.ipynb
+| |____CCS_all_in_npy_orgdata.ipynb
+| |____CCS_Petrel_Etchegoin_KHmaps.ipynb
+| |____dev_HM_InSAR_rst.ipynb
+| |____dev_HM_InSAR_exp2.ipynb
+| |____4Elliot_leakage_assessment.ipynb
+| |____CCS_CMG_rst2npy.ipynb
+| |____demo_H2_MLAI.ipynb
+| |____SC_outfiles.ipynb
+| |____Petrel_Gslib2npy.ipynb
+| |____CCS_injection_purity.ipynb
+|____NRAP
+| |____fault_leakage_component.py
+|____pyCMG_copyright_v1.1.docx
+|____AI_utils
+| |______init__.py
+| |____train.py
+|____CMGvsFEM
+| |____Case1_simpleFEM
+| | |____CMG_output_2D_dip9_shale.xlsx
+|____.git
+| |____config
+| |____objects
+| | |____pack
+| | | |____pack-923dda2ee4c0f32d80b1a6b9a6bb4e4c4dc50b6e.pack
+| | | |____pack-923dda2ee4c0f32d80b1a6b9a6bb4e4c4dc50b6e.idx
+| | |____info
+| |____HEAD
+| |____info
+| | |____exclude
+| |____logs
+| | |____HEAD
+| | |____refs
+| | | |____heads
+| | | | |____main
+| | | |____remotes
+| | | | |____origin
+| | | | | |____HEAD
+| |____description
+| |____hooks
+| | |____commit-msg.sample
+| | |____pre-rebase.sample
+| | |____pre-commit.sample
+| | |____applypatch-msg.sample
+| | |____fsmonitor-watchman.sample
+| | |____pre-receive.sample
+| | |____prepare-commit-msg.sample
+| | |____post-update.sample
+| | |____pre-merge-commit.sample
+| | |____pre-applypatch.sample
+| | |____pre-push.sample
+| | |____update.sample
+| | |____push-to-checkout.sample
+| |____refs
+| | |____heads
+| | | |____main
+| | |____tags
+| | |____remotes
+| | | |____origin
+| | | | |____HEAD
+| |____index
+| |____packed-refs
+|____3_RS_monitor_AI
+| |____.DS_Store
+| |____train_UNet_image2image_parse_file.py
+| |____RS_CMG_rst2npy.ipynb
+| |____train_UNet_disp2dpres.py
+| |____RS_PCA_all_images.ipynb
+| |____rst_UNet_PRES_viz_animation.ipynb
+| |____RS_InSAR_ML_PCA.ipynb
+| |____rst_UNet_viz.ipynb
+| |____RS_PCA_corr_maps.ipynb
+| |____train_UNet_input.txt
+| |____rst_UNet_SG_viz_animation.ipynb
+| |____train_UNet_image2image.py
+|____HPC_Sherlock
+| |____dev_wrt_subm_sherlock.ipynb
+| |____dev_run_rwd_sherlock.py
+| |____TPL_pycontrol.py
+| |____submit.sh
+| |____sherlock_submit_jobs.sh
+| |____wrt_pyCTRLfiles.ipynb
+| |____CMG2npy_on_sherlock.py
+|____AI_models
+| |______init__.py
+| |____UNet_model_v2.py
+| |____UNet_model.py
+"""
+
 
 ## Copyright statement 
 Copyright © 2022-2024 SUETRI-A Research Group, The Board of Trustees of the Leland Stanford Junior University.
