@@ -58,14 +58,6 @@ This repository is developed/designed by Yunan Li from SUETRI-A research group a
 <!-- - Threshold is defined to be 1 MPa as an example to describe pressure footprints. -->
 
 
-## Numerical model history match using InSAR
-
-![InSAR-HM](https://github.com/AndyStudio/pyCCUS-public/assets/39730681/0c39dda9-f4b1-4497-a2cf-ea0f830ac6c2)
-
-**Notation**
-- History match of numerical simulation with InSAR observations in early stage of GCS projects.
-- Calibrate the identified parameters with low confidence in numerical models.
-- Reduce simulation uncertainties and improve the reliability of computational results.
 
 # pyCCUS overview
 
@@ -107,6 +99,8 @@ This repository is developed/designed by Yunan Li from SUETRI-A research group a
 - Uncertainty quantification.
 - Global sensitivity analysis.
 - History match to calibrate numerical model and reduce simulation uncertainties.
+
+![InSAR-HM](https://github.com/AndyStudio/pyCCUS-public/assets/39730681/0c39dda9-f4b1-4497-a2cf-ea0f830ac6c2)
 
 ## pyCCUS structure
 ``` bash
