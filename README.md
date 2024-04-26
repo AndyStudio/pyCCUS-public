@@ -100,7 +100,9 @@ This repository is developed/designed by Yunan Li from SUETRI-A research group a
 - Global sensitivity analysis.
 - History match to calibrate numerical model and reduce simulation uncertainties.
 
-![InSAR-HM](https://github.com/AndyStudio/pyCCUS-public/assets/39730681/0c39dda9-f4b1-4497-a2cf-ea0f830ac6c2)
+
+![InSAR-HM](https://github.com/AndyStudio/pyCCUS-public/assets/39730681/3950f821-9231-40ea-845d-79b29aeebcd3)
+
 
 ## pyCCUS structure
 ``` bash
