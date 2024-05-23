@@ -35,3 +35,7 @@ What's next?
 - When the simulation finishes, it will just stop, and the node is back to Sherlock for use by others.
 - You could also set an alarm, that is to receive an email or a notification after it finishes. This is totally up to you!
 - I did not include this function in my work, because I may not want to receive 1000+ emails after an experiment. 
+
+## Example 2: you need to run many CMG models on Sherlock (e.g. 1000+)
+
+**Under construction ...**
