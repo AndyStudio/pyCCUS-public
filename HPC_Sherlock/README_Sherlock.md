@@ -3,7 +3,7 @@
 - Author: Yunan Li
 - Date: May 22th, 2024
 
-## Example 1: you need to run 1 CMG run on Sherlock.
+## Example 1: you need to run 1 CMG model on Sherlock.
 
 First, we need to prepare a CMG model, that is the dat file. Let’s name it Your_test.dat. 
 - It is better to test from local to make sure it runs with CMG with no errors.
