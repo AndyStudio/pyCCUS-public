@@ -8,4 +8,4 @@
 module use /home/groups/sh_s-dss/share/sdss/modules/modulefiles
 module --ignore-cache load CMG
 
-python pycontrol_1.py
+python pycontrol.py
