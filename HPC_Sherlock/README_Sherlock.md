@@ -23,7 +23,7 @@ Third, we need a pycontrol.py file.
 - An example file could be found in this directory with the name = pycontrol.py
 
 Fourth, submit the job to Sherlock. 
-- Command line: 'sbatch -p serc submit.sh' 
+- Command line: `sbatch -p serc submit.sh`
 - Where: it should happen under the directory of your work on Sherlock.
 - -p serc means you are using the partition of serc for submission of the job.
 - Expected to see the job submitted to the queue or running immediately if we have enough resources. 
