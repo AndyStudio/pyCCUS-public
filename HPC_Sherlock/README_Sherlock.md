@@ -5,7 +5,8 @@
 
 ## Example 1: you need to run 1 CMG model on Sherlock.
 
-** The following example assumes using CMG GEM. Need to change in pycontrol.py if you are using STARS, IMEX, or others. **
+- The following example assumes using CMG GEM.
+- Need to change the **pwd_CMG** in **pycontrol.py** if you are using STARS, IMEX, or others.
 
 First, we need to prepare a CMG model, that is the dat file. Let’s name it case0.dat. 
 - It is better to test from local to make sure it runs with CMG with no errors.
