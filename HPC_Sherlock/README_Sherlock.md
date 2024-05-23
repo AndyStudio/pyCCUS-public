@@ -28,7 +28,7 @@ Fourth, submit the job to Sherlock.
 - `-p serc` means you are using the partition of serc for submission of the job.
 - Expected to see the job submitted to the queue or running immediately if we have enough resources. 
 
-Now, you successfully queue for your first CMG job on Stanford Sherlock. Congratulations!
+Now, you are successfully in the queue for your first CMG job on Stanford Sherlock. Congratulations!
 
 What next?
 
