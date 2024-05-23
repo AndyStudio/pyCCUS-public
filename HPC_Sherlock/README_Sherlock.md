@@ -5,7 +5,7 @@
 
 ## Example 1: you need to run 1 CMG model on Sherlock.
 
-First, we need to prepare a CMG model, that is the dat file. Let’s name it Your_test.dat. 
+First, we need to prepare a CMG model, that is the dat file. Let’s name it case0.dat. 
 - It is better to test from local to make sure it runs with CMG with no errors.
 - Sherlock queue takes time, so it is not the optimal solution to debug CMG model errors on Sherlock when you have alternative choices.
 
