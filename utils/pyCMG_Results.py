@@ -73,6 +73,8 @@ class pycmgresults():
         # organize data in dict format    
         cache = {}
         count = 0
+        key = None
+        pressure = []
         
         for i in range(len(lines)):
             try:
