@@ -1,7 +1,7 @@
 # How to run CMG on Stanford Sherlock?
 
 - Author: Yunan Li
-- Date: May 22th, 2024
+- Date: May 22nd, 2024
 
 ## Example 1: you need to run 1 CMG model on Sherlock.
 
