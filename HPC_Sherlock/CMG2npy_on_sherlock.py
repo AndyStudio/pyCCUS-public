@@ -86,16 +86,16 @@ def rwo_reader2arr(self, folder, sim, prop, layer_nums, time_query, x_dir_key='X
     return rst_arr
 
 
-def wrt_cmgrwd(sim_sr3=simID,
-                ext_rwo=None,
-                path2simfolder=None,
-                create_rwo_folder=True,
-                rwo_folder=rwo,
-                proplist=props,
-                layer_num=lyr_query,
-                time_step='*ALL-TIMES',
-                layer_type = '*XYZLAYER',
-                precis=4):
+def wrt_cmgrwd(sim_sr3,
+                ext_rwo,
+                path2simfolder,
+                create_rwo_folder,
+                rwo_folder,
+                proplist,
+                layer_num,
+                time_step,
+                layer_type,
+                precis):
     """
     The function is in a different rpo. Will be updated soon ...
     """
