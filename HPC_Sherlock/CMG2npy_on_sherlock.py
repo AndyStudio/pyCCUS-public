@@ -86,6 +86,26 @@ def rwo_reader2arr(self, folder, sim, prop, layer_nums, time_query, x_dir_key='X
     return rst_arr
 
 
+def wrt_cmgrwd(sim_sr3=simID,
+                ext_rwo=None,
+                path2simfolder=None,
+                create_rwo_folder=True,
+                rwo_folder=rwo,
+                proplist=props,
+                layer_num=lyr_query,
+                time_step='*ALL-TIMES',
+                layer_type = '*XYZLAYER',
+                precis=4):
+    """
+    The function is in a different rpo. Will be updated soon ...
+    """
+
+def run_rwd(case_idx):
+    """
+    The function is in a different rpo. Will be updated soon ...
+    """
+
+
 
 import numpy as np
 import shutil
