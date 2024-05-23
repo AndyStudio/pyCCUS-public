@@ -25,7 +25,7 @@ Third, we need a pycontrol.py file.
 Fourth, submit the job to Sherlock. 
 - Command line: `sbatch -p serc submit.sh`
 - Where: it should happen under the directory of your work on Sherlock.
-- -p serc means you are using the partition of serc for submission of the job.
+- `-p serc` means you are using the partition of serc for submission of the job.
 - Expected to see the job submitted to the queue or running immediately if we have enough resources. 
 
 Now, you successfully queue for your first CMG job on Stanford Sherlock. Congratulations!
