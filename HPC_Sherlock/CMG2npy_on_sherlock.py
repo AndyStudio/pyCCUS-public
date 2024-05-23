@@ -106,7 +106,6 @@ def run_rwd(case_idx):
     """
 
 
-
 import numpy as np
 import shutil
 import os
@@ -120,6 +119,5 @@ prop_dict = {}
 prop_dict['SG'] = 'Gas Saturation'
 prop_dict['PRES'] = 'Pressure'
 prop_dict['VERDSPLGEO'] = 'Vertical Displacement from Geomechanics'
-
 
 CMG2npy(case_idx=idx, props=proplist, lyr_query=lyr_query, time_query=time_query, prop_dict=prop_dict)
