@@ -9,20 +9,20 @@
 - The following example assumes using CMG GEM.
 - Need to change the **pwd_CMG** in **pycontrol.py** if you are using STARS, IMEX, or others.
 
-First, we need to prepare a CMG model, that is the dat file. Let’s name it `case0.dat`. 
+Step1, we need to prepare a CMG model, that is the dat file. Let’s name it `case0.dat`. 
 - It is better to test from local to make sure it runs with CMG with no errors.
 - Sherlock queue takes time, so it is not the optimal solution to debug CMG model errors on Sherlock when you have alternative choices.
 
-Second, let’s get a .sh file, and name it `submit.sh` for example. 
+Step2, let’s get a .sh file, and name it `submit.sh` for example. 
 - The goal is to communicate with Sherlock to request a node.
 - An example file could be found in this directory with the name = `submit.sh`
 
-Third, we need a `pycontrol.py` file. 
+Step3, we need a `pycontrol.py` file. 
 - This is an additional Python file that I personally use to manage what to do on Sherlock.
 - The reason is for pyCCUS, users sometimes may want to run only a few components of the pipeline but not the entire, so it is easier to control it in a Python file compared to a Shell script.
 - An example file could be found in this directory with the name = `pycontrol.py`
 
-Fourth, submit the job to Sherlock. 
+Step4, submit the job to Sherlock. 
 - Command line: `sbatch -p serc submit.sh`
 - Where: it should happen under the directory of your work on Sherlock.
 - `-p serc` means you are using the partition of serc for submission of the job.
