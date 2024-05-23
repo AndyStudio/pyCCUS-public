@@ -38,4 +38,6 @@ What's next?
 
 ## Example 2: you need to run many CMG models on Sherlock (e.g. 1000+)
 
-**Under construction ...**
+- Hint: refer to the file `sherlock_submit_jobs.sh`.
+
+**Details under construction ...**
