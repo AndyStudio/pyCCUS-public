@@ -5,7 +5,7 @@
 
 ## Example 1: you need to run 1 CMG model on Sherlock.
 
-**Attention**
+**Attention!!!**
 - The following example assumes using CMG GEM.
 - Need to change the **pwd_CMG** in **pycontrol.py** if you are using STARS, IMEX, or others.
 
