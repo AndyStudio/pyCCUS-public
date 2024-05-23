@@ -5,10 +5,8 @@ module --ignore-cache load CMG
 # module use /home/groups/s-ees/share/cees/modules/modulefiles 
 # module load CMG-cees/ 
 
-script_dir="../pyCTRLfiles"
-for i in {63..65}; do
-        script_name="pycontrol_${i}.py"
-        script_path="${script_dir}/${script_name}"
+for i in {1..10}; do
+        script_path="pycontrol_exe.py -runname case${i}"
         job_name="job_${i}"
         output_folder="../slurm"
         output_file="${output_folder}/${job_name}.out"
