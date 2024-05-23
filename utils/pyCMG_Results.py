@@ -97,7 +97,10 @@ class pycmgresults():
             except:
                 pass
         # Record the last item
-        cache[key] = pressure
+        try:
+            cache[key] = pressure
+        except:
+            pass
             
         # convert cache in dict to a pd dataframe
         df = pd.DataFrame({})
