@@ -197,6 +197,25 @@ class pycmgcontrol():
             except:
                 print(f'{casename} {self.proplist} cmgrst to npy are successful, but rwo folder not completely deleted ...')
 
+    def run_gem_simulation(self, case_name_suffix):
+        
+        if self.cmg_version == 'ese-win32-v2022.30':
+            exe_path='"C:\\Program Files (x86)\\CMG\\GEM\\2022.30\\Win_x64\\EXE\\gm202230.exe"'
+            cd_path = os.path.join(self.simfolder, self.batchfolder).rstrip('\\')
+
+        elif self.cmg_version == 'ese-ts1win-v2023.20':
+            exe_path='"C:\\Program Files\\CMG\\GEM\\2023.20\\Win_x64\\EXE\\gm202320.exe"'
+            cd_path = os.path.join(self.simfolder, self.batchfolder).rstrip('\\')
+                
+        elif self.cmg_version == 'stf-sherlock-v2020.10':
+            exe_path = "/home/groups/s-ees/share/cees/software/x86_64_arch/CMG/2020.109/gem/2020.11/linux_x64/exe/gm202011.exe" 
+            cd_path = os.path.join(self.simfolder, self.batchfolder).rstrip('/')
+        else:
+            if self.err_stop:
+                raise ValueError(f'The CMG version {self.cmg_version} is not implemented in run_gem_simulation function of pycmgcontrol() class .....')
+            else:
+                print(f'The CMG version {self.cmg_version} is not implemented in run_gem_simulation function of pycmgcontrol() class .....')
+
         
 
 
