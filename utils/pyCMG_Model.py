@@ -14,8 +14,8 @@ import sys
 sys.path.append("..")
 
 # import class of the base case file
-from cmg_models.wrtcmgdat_SPR_CCS_field6x6 import Write_datfiles_SPRCCS
-from cmg_models.wrtcmgdat_h2_rxns import Write_datfiles_h2
+# from cmg_models.wrtcmgdat_SPR_CCS_field6x6 import Write_datfiles_SPRCCS
+# from cmg_models.wrtcmgdat_h2_rxns import Write_datfiles_h2
 from cmg_models.wrtcmgdat_ccs_omv import Write_datfiles_OMVCCS
 
 class omv_CCS():
