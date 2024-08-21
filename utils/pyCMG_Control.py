@@ -31,16 +31,83 @@ class pycmgcontrol():
         self.rwd_layer_type = '*XYZLAYER'
         self.rwd_precis = 4
         ##### Global SA params
-        self.inj_hrzn = None
+        # self.inj_hrzn = None
+        
         # System selection
         self.cmg_version = 'ese-win32-v2022.30'
+        self.err_stop = False
         ##################################################
         ##### DON't manually update params in this section
         ##### Empty ...
-        ##################################################
-        self.yr_after_shutin_disp = [5, 10]
         self.cmg2npy = None
+        ##################################################
+        # self.yr_after_shutin_disp = [5, 10]
+        
 
+
+
+    def run_stars_simulation(self, case_name_suffix):
+        
+        if self.cmg_version == 'ese-win32-v2022.30':
+            exe_path='"C:\\Program Files (x86)\\CMG\\STARS\\2022.30\\Win_x64\\EXE\\st202230.exe"'
+            cd_path = os.path.join(self.simfolder, self.batchfolder).rstrip('\\')
+
+        elif self.cmg_version == 'ese-ts1win-v2023.20':
+            exe_path='"C:\\Program Files\\CMG\\STARS\\2023.20\\Win_x64\\EXE\\st202320.exe"'
+            cd_path = os.path.join(self.simfolder, self.batchfolder).rstrip('\\')
+                
+        elif self.cmg_version == 'stf-sherlock-v2020.10':
+            exe_path = "/home/groups/s-ees/share/cees/software/x86_64_arch/CMG/2020.109/stars/2020.11/linux_x64/exe/st202011.exe" 
+            cd_path = os.path.join(self.simfolder, self.batchfolder).rstrip('/')
+        else:
+            if self.err_stop:
+                raise ValueError(f'The CMG version {self.cmg_version} is not implemented in run_gem_simulation function of pycmgcontrol() class .....')
+            else:
+                print(f'The CMG version {self.cmg_version} is not implemented in run_gem_simulation function of pycmgcontrol() class .....')
+            
+        
+        # Execute the CMG software using the files we defined.
+        # cmd_line = 'cd ' + cd_path + '  & ' + exe_path + '  -f ' + f'{case_name_suffix}'
+        cmd_line = f"cd {cd_path}  & {exe_path} -f {case_name_suffix}"
+        try:
+            os.system(cmd_line)
+        except:
+            if self.err_stop:
+                raise ValueError(f'{case_name_suffix} run CMG STARS step encounters an error ...')
+            else:
+                print(f'{case_name_suffix} run CMG STARS step encounters an error ...')
+    
+
+    def run_gem_simulation(self, case_name_suffix):
+        
+        if self.cmg_version == 'ese-win32-v2022.30':
+            exe_path='"C:\\Program Files (x86)\\CMG\\GEM\\2022.30\\Win_x64\\EXE\\gm202230.exe"'
+            cd_path = os.path.join(self.simfolder, self.batchfolder).rstrip('\\')
+
+        elif self.cmg_version == 'ese-ts1win-v2023.20':
+            exe_path='"C:\\Program Files\\CMG\\GEM\\2023.20\\Win_x64\\EXE\\gm202320.exe"'
+            cd_path = os.path.join(self.simfolder, self.batchfolder).rstrip('\\')
+                
+        elif self.cmg_version == 'stf-sherlock-v2020.10':
+            exe_path = "/home/groups/s-ees/share/cees/software/x86_64_arch/CMG/2020.109/gem/2020.11/linux_x64/exe/gm202011.exe" 
+            cd_path = os.path.join(self.simfolder, self.batchfolder).rstrip('/')
+        else:
+            if self.err_stop:
+                raise ValueError(f'The CMG version {self.cmg_version} is not implemented in run_gem_simulation function of pycmgcontrol() class .....')
+            else:
+                print(f'The CMG version {self.cmg_version} is not implemented in run_gem_simulation function of pycmgcontrol() class .....')
+            
+        
+        # Execute the CMG software using the files we defined.
+        # cmd_line = 'cd ' + cd_path + '  & ' + exe_path + '  -f ' + f'{case_name_suffix}'
+        cmd_line = f"cd {cd_path}  & {exe_path} -f {case_name_suffix}"
+        try:
+            os.system(cmd_line)
+        except:
+            if self.err_stop:
+                raise ValueError(f'{case_name_suffix} run CMG GEM step encounters an error ...')
+            else:
+                print(f'{case_name_suffix} run CMG GEM step encounters an error ...')
 
     def wrt_rwd_report(self, case_name, verbose=False):
             # write cmg rwd file to simfolder
@@ -68,6 +135,62 @@ class pycmgcontrol():
         if not os.path.exists(self.npy_folder):
             os.makedirs(self.npy_folder)
 
+    def run_rwd_report(self, case_name):
+        """
+        Files folder path template
+        exe_path='"C:\\Program Files (x86)\\CMG\\RESULTS\\2022.30\\Win_x64\\EXE\\Report.exe"'
+        cd_path='E:\\CUSP_win\\GEM_CCS\\SPR_model\\SPR_petrel_model2CMG\\extended_6x6\\Etchegoin_shale\\well_design_exp3_VOLMOD2 '
+        """
+   
+        if self.cmg_version == 'ese-win32-v2022.30':
+            exe_path='"C:\\Program Files (x86)\\CMG\\RESULTS\\2022.30\\Win_x64\\EXE\\Report.exe"'
+            cd_path = os.path.join(self.simfolder, self.batchfolder).rstrip('\\')
+    #         if batchfolder == 'N/A':
+    #             cd_path = simfolder.rstrip('\\')
+    #         else:
+    #             cd_path = os.path.join(simfolder, batchfolder)
+        elif self.cmg_version == 'ese-ts1win-v2023.20':
+            exe_path='"C:\\Program Files\\CMG\\RESULTS\\2023.20\\Win_x64\\exe\\Report.exe"'
+            cd_path = os.path.join(self.simfolder, self.batchfolder).rstrip('\\')
+                
+        elif self.cmg_version == 'stf-sherlock-v2020.10':
+            exe_path = "/home/groups/s-ees/share/cees/software/x86_64_arch/CMG/2020.109/gem/2020.11/linux_x64/exe/gm202011.exe" 
+            cd_path = os.path.join(self.simfolder, self.batchfolder).rstrip('/')
+        else:
+            if self.err_stop:
+                raise ValueError(f'The CMG version {self.cmg_version} is not implemented in run_rwd_report function of pycmgcontrol() class .....')
+            else:
+                print(f'The CMG version {self.cmg_version} is not implemented in run_rwd_report function of pycmgcontrol() class .....')
+            
+        
+        # Execute the CMG software using the files we defined.
+        # cmd_line = 'cd ' + cd_path + '  & ' + exe_path + '  -f ' + f'{case_name}' + '.rwd'
+        # work_version = 'cd ' + cd_path + ' & ' + exe_path + '  -f ' + f'"case{case_name}"' + '.rwd'
+        cmd_line = f"cd {cd_path}  & {exe_path} -f {case_name}.rwd"
+        try:
+            os.system(cmd_line)
+        except:
+            if self.err_stop:
+                raise ValueError(f'{case_name} run rwd step encounters an error ...')
+            else:
+                print(f'{case_name} run rwd step encounters an error ...')
+
+    def read_PRES_SG_from_rwo(self, case_name):
+        # Read SG and PRES arrays
+        self.SG_flag = self.read_SG_rwo2npy(case_name=case_name, save=True)
+        SG_temp = self.cmg2npy
+        self.PRES_flag = self.read_PRES_rwo2npy(case_name=case_name, save=True)
+        self.cmg2npy = [SG_temp, self.cmg2npy]
+        # Delete the rwo files
+        if self.SG_flag and self.PRES_flag:
+            try:
+                del_folder = os.path.join(self.simfolder, self.batchfolder, f'rwo_{case_name}')
+                shutil.rmtree(del_folder)
+            except:
+                if self.err_stop:
+                    raise ValueError(f'{case_name} SG & PRES cmgrst to npy are successful, but rwo folder not completely deleted ...')
+                else:
+                    print(f'{case_name} SG & PRES cmgrst to npy are successful, but rwo folder not completely deleted ...')
 
     def read_SG_rwo2npy(self, case_name, save=True):
         cmgrst = pycmgresults()
@@ -87,8 +210,10 @@ class pycmgcontrol():
                 return SG_arr
             
         except:
-            #raise ValueError(f'{case_name} gas saturation has an error when reading rwo to npy ...')
-            print(f'{case_name} gas saturation has an error when reading rwo to npy ...')
+            if self.err_stop:
+                raise ValueError(f'{case_name} gas saturation has an error when reading rwo to npy ...')
+            else:
+                print(f'{case_name} gas saturation has an error when reading rwo to npy ...')
         
     def read_PRES_rwo2npy(self, case_name, save=True):
         cmgrst = pycmgresults()
@@ -108,22 +233,27 @@ class pycmgcontrol():
                 return PRES_arr
             
         except:
-            print(f'{case_name} pressure has an error when reading rwo to npy ...')
-            #raise ValueError(f'{case_name} pressure has an error when reading rwo to npy ...')
+            if self.err_stop:
+                raise ValueError(f'{case_name} pressure has an error when reading rwo to npy ...')
+            else:
+                print(f'{case_name} pressure has an error when reading rwo to npy ...')
+            
         
     def read_VERDSPLGEO_rwo2npy(self, case_name, save=True):
         cmgrst = pycmgresults()
         rwo_dir = os.path.join(self.simfolder, self.batchfolder, f'rwo_{case_name}')
 
-        # For cases with changing injection horizon
-        if self.inj_hrzn:
-            self.time_query = list(np.arange(self.inj_hrzn+1)+self.time_start_year)
-            if self.yr_after_shutin_disp:
-                for yy in self.yr_after_shutin_disp:
-                    self.time_query.append(self.inj_hrzn+self.time_start_year+yy)
-        else:
-            print(f"Injection horizon is None, no time query for CMG result extraction ...")
-
+        ######################################################################################
+        ##### No need to have this anymore ....
+        # # For cases with changing injection horizon
+        # if self.inj_hrzn:
+        #     self.time_query = list(np.arange(self.inj_hrzn+1)+self.time_start_year)
+        #     if self.yr_after_shutin_disp:
+        #         for yy in self.yr_after_shutin_disp:
+        #             self.time_query.append(self.inj_hrzn+self.time_start_year+yy)
+        # else:
+        #     print(f"Injection horizon is None, no time query for CMG result extraction ...")
+        ######################################################################################
 
         try:
 
@@ -141,8 +271,11 @@ class pycmgcontrol():
                 return VERDSPLGEO_arr
             
         except:
-            print(f'{case_name} VERDSPLGEO has an error when reading rwo to npy ...')
-            #raise ValueError(f'{case_name} pressure has an error when reading rwo to npy ...')
+            if self.err_stop:
+                raise ValueError(f'{case_name} VERDSPLGEO has an error when reading rwo to npy ...')
+            else:
+                print(f'{case_name} VERDSPLGEO has an error when reading rwo to npy ...')
+            
 
 
 
@@ -158,8 +291,11 @@ class pycmgcontrol():
         elif self.proplist in [['Vertical Displacement from Geomechanics'], ['VERDSPLGEO']]:
             casename = f'case{caseid}.gmch'
         else:
-            # print('Error: the prop cannot found in cmgrst2npy_v2 function in pyCMG_Control.py file ...')
-            raise ValueError('Error: the prop cannot found in cmgrst2npy_v2 function in pyCMG_Control.py file ...')
+            if self.err_stop:
+                raise ValueError('Error: the prop cannot found in cmgrst2npy function in pyCMG_Control.py file ...')
+            else:
+                print('Error: the prop cannot found in cmgrst2npy function in pyCMG_Control.py file ...')
+            
         
         # STEP1: write cmg rwd file to simfolder
         self.wrt_rwd_report(case_name=casename, verbose=verbose)
@@ -185,7 +321,10 @@ class pycmgcontrol():
             self.save_done = self.read_VERDSPLGEO_rwo2npy(case_name=casename, save=True)
 
         else:
-            print('Error: the prop cannot found in cmgrst2npy_v2 function in pyCMG_Control.py file ...')
+            if self.err_stop:
+                raise ValueError('Error: the prop cannot found in cmgrst2npy_v2 function in pyCMG_Control.py file ...')
+            else:
+                print('Error: the prop cannot found in cmgrst2npy_v2 function in pyCMG_Control.py file ...')
 
         # Delete unnecessary files
         if self.save_done and rwodelete:
@@ -195,31 +334,48 @@ class pycmgcontrol():
                 del_rwd = os.path.join(self.simfolder, self.batchfolder, f'{casename}.rwd')
                 os.remove(del_rwd)
             except:
-                print(f'{casename} {self.proplist} cmgrst to npy are successful, but rwo folder not completely deleted ...')
+                if self.err_stop:
+                    raise ValueError(f'{casename} {self.proplist} cmgrst to npy are successful, but rwo folder not completely deleted ...')
+                else:
+                    print(f'{casename} {self.proplist} cmgrst to npy are successful, but rwo folder not completely deleted ...')
 
-    def run_gem_simulation(self, case_name_suffix):
         
-        if self.cmg_version == 'ese-win32-v2022.30':
-            exe_path='"C:\\Program Files (x86)\\CMG\\GEM\\2022.30\\Win_x64\\EXE\\gm202230.exe"'
-            cd_path = os.path.join(self.simfolder, self.batchfolder).rstrip('\\')
 
-        elif self.cmg_version == 'ese-ts1win-v2023.20':
-            exe_path='"C:\\Program Files\\CMG\\GEM\\2023.20\\Win_x64\\EXE\\gm202320.exe"'
-            cd_path = os.path.join(self.simfolder, self.batchfolder).rstrip('\\')
-                
-        elif self.cmg_version == 'stf-sherlock-v2020.10':
-            exe_path = "/home/groups/s-ees/share/cees/software/x86_64_arch/CMG/2020.109/gem/2020.11/linux_x64/exe/gm202011.exe" 
-            cd_path = os.path.join(self.simfolder, self.batchfolder).rstrip('/')
+
+    def cmgrst2npy_v1(self, caseid, rst_type='sr3'):
+        """
+        Assemble components to read from CMG sr3 results to property npy files
+        """
+        # STEP1: write cmg rwd file to simfolder
+        if rst_type == 'sr3':
+            casename = f'case{caseid}'
+        elif rst_type == 'gmch.sr3':
+            casename = f'case{caseid}.gmch'
         else:
             if self.err_stop:
-                raise ValueError(f'The CMG version {self.cmg_version} is not implemented in run_gem_simulation function of pycmgcontrol() class .....')
+                raise ValueError('Error: the rst_type is given with a wrong value .....')
             else:
-                print(f'The CMG version {self.cmg_version} is not implemented in run_gem_simulation function of pycmgcontrol() class .....')
+                print('Error: the rst_type is given with a wrong value .....')
+        self.wrt_rwd_report(case_name=casename, verbose=False)
 
-        
+        # STEP2: check all necessary folders available (if not, create folders)
+        self.folder_sanity_check(case_name=casename)
+
+        # STEP3: run CMG result report module (.exe): read rwd and generate rwo files
+        self.run_rwd_report(case_name=casename)
+
+        # STEP4: read rwo files to npy
+        if rst_type == 'sr3':
+            self.read_PRES_SG_from_rwo(case_name=casename)
+        elif rst_type == 'gmch.sr3':
+            self.read_VERDSPLGEO_rwo2npy(case_name=casename)
+        else:
+            if self.err_stop:
+                raise ValueError('Error: the rst_type is given with a wrong value .....')
+            else:
+                print('Error: the rst_type is given with a wrong value .....')
 
 
-    # Shell project uses this module
     def readcmg_ts_rwo_to_dict(self, path2file, line_dist):
         """
         Input
