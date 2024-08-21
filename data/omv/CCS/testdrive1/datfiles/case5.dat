@@ -1,0 +1,322 @@
+
+
+** test dat file using Johansen model for pyCCUS workflow
+
+
+**  ==============  INPUT/OUTPUT CONTROL  ======================
+
+RESULTS SIMULATOR GEM
+
+*TITLE1 'Johansen sector NPD5'
+*TITLE2 'Base case'
+*TITLE3 'original'
+*CASEID 'sim1'
+
+*INUNIT	*SI
+*RESULTFILE *SR2
+
+*WPRN	*WELL	*TIME
+*WPRN	*GRID	*TIME
+*WPRN	*ITER	*BRIEF
+
+*OUTPRN	*WELL	*ALL
+*OUTPRN *RES	*ALL
+*OUTPRN *GRID	*pres drop sw so sg temp y 'CO2' x 'CO2' w 'CO2' obhloss viso visg IMPL  
+**solconc
+**OUTPRN *FLUX-SECTOR *ALL *MOLE
+
+*WSRF	*WELL 1
+**WSRF	*SPECIAL *TIME
+*WSRF	*GRID	*TIME
+*WSRF	*GRIDDEFORM	*TIME
+
+*XDR	*ON
+**OUTSRF *WELL  *ALL
+*OUTSRF  *RES  *ALL
+*OUTSRF	*GRID *POROS *PERM *PRES *DROP *DATUMPRES *SO *SG *SW *YOUNG *POISSON *VDISPL
+*STRESSH *STRESI *STRESJ *STRESK *STRESEFF *STRNEPL
+*STRAINI *STRAINJ *STRAINK *STRAINSH *TEMP
+*YLDSTATE *Z 'CO2' *W 'CO2'  *DENG  *DENW  *WALL  *VERDSPLGEO  *VDISPL *KRG *SGHYS *SGDTHY *SGRHYS
+*RHOG  *RHOW  *PCW  *PCG  *SALIN
+*SGHYS  *SGRHYS  *SGDTHY  *KRG
+*MOLALITY 'CO2'  *PH
+** *IHYKRG  *SEGMAX  *SEWMAX
+*OUTSRF  *FLUX_SECTOR  *ALL  *MOLE
+
+*INVENTORY-CO2
+*OUTSRF *WELL  *PAVG  *GHGGAS *GHGLIQ *GHGTHY *GHGSCRIT *GHGSOL *GHGAQU *GHGMNR
+
+*DIARY *CHANGES
+
+
+**  ==============  GRID AND RESERVOIR DEFINITION  =================
+
+*GRID CORNER 100 100 11
+*include Johansen_sectorNPD5_grid.dat
+
+***** For cases with constant porosity *****
+*POR *CON 0.2
+***** For cases with porosity realizations *****
+**POR	*ALL
+**include Johansen_sectorNPD5_poro.dat
+
+
+***** For cases with constant porosity *****
+*PERMI *CON 1858.928
+***** For cases with porosity realizations *****
+**PERMI	*ALL
+**include Johansen_sectorNPD5_permi.dat
+*PERMJ	*EQUALSI
+*PERMK	*EQUALSI * 0.1
+
+**TRANSF	** Adjusts transmissibilities on a fault basis
+
+***PINCHOUTARRAY *ALL
+***include Johansen_sectorNPD5_pinchout.dat
+
+***VOLMOD *CON  1
+***MOD
+**1:100	 1:2	1:11 = 1
+**1:100	 99:100 1:11 = 1
+**1:2    1:100  1:11 = 1
+**99:100 1:100  1:11 = 1
+
+*CPOR  4.35e-7	** rock compressibility in /kPa
+*PRPOR  100	** reference pressure in kPa
+
+*END-GRID
+
+
+**  ==============  FLUID DEFINITIONS  ======================
+
+*MODEL   *PR
+*NC    2    2
+*TRES   94
+*PVC3  1.2000000E+00	** Parameters for Hydrocarbon Interaction Coefficients (Optional)
+*COMPNAME
+'CO2'          'C1'
+*SG        8.1800000E-01  3.0000000E-01
+*TB       -7.8450000E+01 -1.6145000E+02
+*PCRIT     7.2800000E+01  4.5400000E+01
+*VCRIT     9.4000000E-02  9.9000000E-02
+*TCRIT     3.0420000E+02  1.9060000E+02
+*AC        2.2500000E-01  8.0000000E-03
+*MW        4.4010000E+01  1.6043000E+01
+*HCFLAG    0  0
+
+*BIN	    1.0300000E-01 **User Component Interaction Coefficients (Conditional)
+*VSHIFT     0.0000000E+00  0.0000000E+00 **Volume Shift Parameters (Optional)
+*VISCOR *HZYT **Viscosity Correlation Specification (Optional)  Herning and Zipperer (1936)
+*MIXVC      1.0000000E+00
+*VISVC      9.4000000E-02  9.9000000E-02
+*VISCOEFF   1.0230000E-01  2.3364000E-02  5.8533000E-02 -4.0758000E-02 9.3324000E-03
+*OMEGA      4.5723553E-01  4.5723553E-01
+*OMEGB      7.7796074E-02  7.7796074E-02
+*PCHOR      7.8000000E+01  7.7000000E+01
+*HENRYC     1.9510547E+05  0.0
+*REFPH      9.4000000E+03  9.4000000E+03
+*VINFINITY  3.5089333E-02  3.5242646E-02
+
+**THERMAL *ON	** Turns on thermal option (Optional)
+**Indicates input of ideal gas enthalpy coefficients.
+**ENTHCOEF
+**4.7780500E+00  1.1443300E-01  1.0113200E-04 -2.6494000E-08 3.4706000E-12 -1.3140000E-16 -5.5811400E+00  5.6483400E-01 -2.8297300E-04  4.1739900E-07 -1.5255760E-10  1.9588570E-14
+
+*SOLUBILITY
+*HENRY-CORR-CO2        ** Use Harvey's correlation for Hen Law const.
+*SALINITY-CALC    *OFF
+*SALINITY   *PPMWT   20000		**20ppk from SPR
+*AQFILL *ON
+*TRACE-COMP 2
+
+DENW 1000
+VISW 0.89
+
+
+**  ==============  ROCK-FLUID PROPERTIES  ======================
+
+*ROCKFLUID
+*RPT
+*SGT **slt	** Liquid-gas relative permeabilities
+**    Sg        krg       krog     Pcog    Pcogi
+0.000000  0.000000  0.000000  0.000000
+0.050000  0.000080  0.000000  0.000000
+0.100000  0.000680  0.000000  0.000000
+0.150000  0.002330  0.000000  0.000000
+0.200000  0.005610  0.000000  0.000000
+0.250000  0.011140  0.000000  0.000000
+0.300000  0.019610  0.000000  0.000000
+0.350000  0.031740  0.000000  0.000000
+0.400000  0.048370  0.000000  0.000000
+0.450000  0.070420  0.000000  0.000000
+0.500000  0.098940  0.000000  0.000000
+0.550000  0.136180  0.000000  0.000000
+0.600000  0.180650  0.000000  0.000000
+0.650000  0.232750  0.000000  0.000000
+0.700000  0.307520  0.000000  0.000000
+0.750000  0.395200  0.000000  0.000000
+0.800000  0.506570  0.000000  0.000000
+0.850000  0.655620  0.000000  0.000000
+0.900000  0.954430  0.000000  0.000000
+0.950000  0.977220  0.000000  0.000000
+1.000000  1.000000  0.000000  0.000000
+
+*SWT	** Water-oil relative permeabilities
+**    Sw        krw       krow         Pcow    Pcowi
+0.000000  0.000000  0.000000  0.000000
+0.050000  0.000000  0.000000  0.000000
+0.100000  0.000000  0.000000  0.000000
+0.150000  0.000010  0.000000  0.000000
+0.200000  0.000150  0.000000  0.000000
+0.250000  0.000770  0.000000  0.000000
+0.300000  0.002440  0.000000  0.000000
+0.350000  0.005950  0.000000  0.000000
+0.400000  0.012350  0.000000  0.000000
+0.450000  0.022870  0.000000  0.000000
+0.500000  0.039020  0.000000  0.000000
+0.550000  0.062500  0.000000  0.000000
+0.600000  0.095260  0.000000  0.000000
+0.650000  0.139470  0.000000  0.000000
+0.700000  0.197530  0.000000  0.000000
+0.750000  0.272070  0.000000  0.000000
+0.800000  0.365950  0.000000  0.000000
+0.850000  0.482250  0.000000  0.000000
+0.900000  0.624300  0.000000  0.000000
+0.950000  0.795620  0.000000  0.000000
+1.000000  1.000000  0.000000  0.000000
+
+*HYSKRG 0.4	** Gas Relative Permeability Hysteresis Parameter (Optional)
+
+
+**  ==============  INITIAL CONDITIONS  ======================
+
+*INITIAL
+
+*VERTICAL *DEPTH_AVE *WATER_GAS *NOTRANZONE *EQUIL
+
+*ZGAS     0.0001  0.9999
+
+*REFPRES  30000
+*REFDEPTH 3000
+
+**TEMPER   *KVAR  204.0  208.5  213.0  220.5
+
+*DWGC  100
+
+*SEPARATOR	100  20
+
+*SWINIT *CON	1
+
+
+**  ==============  NUMERICAL CONTROL  ======================
+
+*NUMERICAL
+**NORM	*PRESS  345
+**NORM	*SATUR  0.005
+**NORM	*GMOLAR 0.005
+
+**ADTSC *ON
+
+**CONVERGE   *PRESS  7.E-04
+**CONVERGE   *HC     5.E-05
+**CONVERGE   *WATER  5.E-05
+**CONVERGE   *MAXRES 1.E-04
+
+**MAXCHANGE  *GMOLAR 0.8
+**MAXCHANGE  *SATUR  0.8
+
+**NORTH 60
+
+**DTMIN    1.E-06
+**DTMAX    182.5
+
+
+**  ==============  GEOMECHANIC SECTION  ====================
+
+*GEOMECH			** Main keyword for using geomechanics module
+*GEOM3D			** Using 3D finite elements
+*SOLVERG *AIMSOL
+*GCOUPLING 2		** Two-way coupling
+**GPTOLMUL  0.7		** Pressure tolerance used in computing coefficients for porosity formulae
+**STRESSTOL 0.07		** Maximum allowed stress difference allowed for each grid block,
+** between consecutive Newton cycles, before the coupled geomechanics-
+** fluid-flow solution is deemed converged. The unit of stress_tol is
+** (kPa | psi) and the allowed range is 0 to 10 kPa (0 to 1.45 psi).
+
+** Specify geomechanics grid that is extended from host simulator’s grid
+**GEOEXTD 0:0  0:0  18:5
+**GEXMINK 3600		** based on depth of injection well
+**GEXMAXK 500
+
+
+**GEODEPTH *GCENTER 1 2 1  2286.33   ** DEPTH OF FIRST GEOMECHANICAL BLOCK
+
+** Note: The yielding stress has a high value to avoid plastics occuring.
+**GEOROCK 1						** CCS storage formation
+
+*ELASTMOD		5E+07		** Elastic Young's modulus (kPa)
+*POISSRATIO	0.2			** Poisson's ratio
+*COHESION		1E+10		** Cohesion for Mohr-Coulomb and Drucker-Prager materials (kPa)
+***HARDEN			0				** Hardening parameter for the linear strain hardening option (kPa).
+***FRICANGLE		28.0			** Friction angle (degrees)
+***BIOTSCOEF		1				** Biot's coefficient
+
+
+***GEOROCK 2					** Shale layers on top of CCS storage formation
+**
+***ELASTMOD		4E+07
+***POISSRATIO	0.25
+***COHESION		1E+10
+***HARDEN			0
+***FRICANGLE		24.0
+***BIOTSCOEF		1
+**
+***GEOTYPE *KVAR  5*2  5*1  1*2
+
+**sigma_x		sigma_y	sigma_z  sigma_xy  sigma_yz  sigma_xz
+*STRESS3D  5E+04		5E+04		5E+04		0				0				0					** Assign the initial stress distribution for 3D finite elements  (in kPa)
+
+***PRESCBC3D	**Prescribed displacement-type boundary conditions on a nodal point of a 3D finite element
+***IJK  1:100 1:100  11
+****nodes    direction    displacement
+**5:8         01:03            0.0
+
+**GOUTSRF  *GGRID  PRES  TEMP  STRESI  STRESJ  STRESK  VERDSPLGEO  VDISPL  YLDSTATE
+***GOUTSRF  *GGRID  STRESI  STRESJ  STRESK  VERDSPLGEO  VDISPL  YLDSTATE
+
+
+**  ==============  WELL AND RECURRENT DATA  ======================
+
+*RUN
+*DATE 2024 1 1
+*DTWELL   0.01
+*AIMWELL  *WELLNN	** Sets the neighbours of active well blocks and the neighbours of the neighbours to implicit
+*WELL 1 'CCS_Injector'
+*WELPRN 1 *WI
+*AIMSET *CON 1		** Sets all blocks to implicit
+*INJECTOR 'CCS_Injector'
+*INCOMP  *SOLVENT  1.0  0.0	** Specifies the compositions of injected fluid
+
+*OPERATE  *MAX  *STG  7283645.7    *CONT	** Specify a surface gas rate (m3/day | ft3/day ) constraint
+*OPERATE  *MAX  *BHP  1.0e+05   *CONT
+
+** Specifies well geometric characteristics used for calculating well index internally
+** rad  geofac  wfrac  skin
+*GEOMETRY  *K  0.2  0.34    1.0    0.0
+
+** Specifies the location of the well completion grid blocks, well indices or parameters for well index calculations
+*PERF	*GEO  'CCS_Injector'
+48  48  6   1.0
+48  48  5   1.0
+48  48  4   1.0
+48  48  3   1.0
+48  48  2   1.0
+
+*DATE 2026 1 1
+*DATE 2028 1 1
+*DATE 2030 1 1
+*DATE 2032 1 1
+*DATE 2034 1 1
+
+*STOP
+              

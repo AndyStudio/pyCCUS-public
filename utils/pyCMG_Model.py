@@ -14,8 +14,45 @@ import sys
 sys.path.append("..")
 
 # import class of the base case file
-from cmg_models.wrtcmgdat_SPR_CCS_field6x6 import Write_datfiles_SPRCCS
-from cmg_models.wrtcmgdat_h2_rxns import Write_datfiles_h2
+# from cmg_models.wrtcmgdat_SPR_CCS_field6x6 import Write_datfiles_SPRCCS
+# from cmg_models.wrtcmgdat_h2_rxns import Write_datfiles_h2
+from cmg_models.wrtcmgdat_ccs_omv import Write_datfiles_OMVCCS
+
+class omv_CCS():
+    def __init__(self):
+        super().__init__()
+        self.folder_path = '../data'
+        self.title1 = 'pyCCUS testdrive'
+        self.title2 = 'CCS omv'
+        self.title3 = 'Yunan Li'
+        
+
+    def write_dat_file(self, df_input, file_name):
+
+        wrtdat = Write_datfiles_OMVCCS()
+        wrtdat.params = {}
+        for kk in df_input.keys():
+            wrtdat.params[kk] = df_input[kk]
+
+        # Create a folder if not exists
+        if not os.path.exists(os.path.join(self.folder_path, 'datfiles')):
+            os.makedirs(os.path.join(self.folder_path, 'datfiles'))
+
+        newfile_path = os.path.join(self.folder_path, 'datfiles', file_name)
+        filename = open(newfile_path, 'w+')
+        wrtdat.print_test2_dat(fileID=filename)
+        filename.close()
+
+    def write_simfiles(self, df_input, verbose=True):
+
+        n, num_col = df_input.shape
+        for i in range(n):
+            self.write_dat_file(df_input=df_input.iloc[i], file_name=f'case{i+1}.dat')
+
+        if verbose:
+            print(f'Job done -- write {n} CMG dat files based on exp design csv .....')
+
+
 
 
 class well_design_opt():
