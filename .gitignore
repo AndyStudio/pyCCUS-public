@@ -3,6 +3,14 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Folders not to sync
+data/
+Shell_code/
+CMGvsGEOSX/
+DGSA_InSAR/data/
+
+
+
 # C extensions
 *.so
 
