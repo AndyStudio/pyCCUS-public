@@ -51,6 +51,8 @@ def wrt_cmgrwd_ts_special(sim_sr3='CCS_GEM',
     if create_rwo_folder:
         if cmg_version == 'ese-win32-v2022.30':
             ext_file_name = f"{rwo_folder}\{ext_file_name}"
+        elif cmg_version == 'ese-ts1win-v2023.20':
+            ext_file_name = f"{rwo_folder}\{ext_file_name}"
         elif cmg_version == 'stf-sherlock-v2020.10':
             ext_file_name = f"{rwo_folder}/{ext_file_name}"
         else:
@@ -112,6 +114,8 @@ def wrt_cmgrwd_grids(sim_sr3='CCS_GEM',
     if create_rwo_folder:
         if cmg_version == 'ese-win32-v2022.30':
             ext_file_name = f"{rwo_folder}\{ext_file_name}"
+        elif cmg_version == 'ese-ts1win-v2023.20':
+            ext_file_name = f"{rwo_folder}\{ext_file_name}"
         elif cmg_version == 'stf-sherlock-v2020.10':
             ext_file_name = f"{rwo_folder}/{ext_file_name}"
         else:
@@ -130,7 +134,20 @@ def wrt_cmgrwd_grids(sim_sr3='CCS_GEM',
         print(f"Write rwd file done from simulation: {sim_sr3}; saved to {rwo_folder}/ folder.")
     # return print(f"Write rwd file done from simulation: {sim_sr3}; saved to {rwo_folder}/ folder.")
     
-
+def run_cmgrwd(rwdfile,env='winlocal'):
+    
+    if env=='winlocal':
+        path2CMG = '"C:\Program Files (x86)\CMG\RESULTS\2021.10\Win_x64\exe\Report"'
+    elif env=='sherlock':
+        path2CMG = '"/home/groups/s-ees/share/cees/software/x86_64_arch/CMG/2022.101/br/2022.10/linux_x64/exe/report.exe"'
+    else:
+        raise TypeError("This type of env in run_cmgrwd function hsa not been implemented yet .....")
+            
+    exec_line = f"cd {os.getcwd()} &{path2CMG} -f {rwdfile}"
+    os.system(exec_line)
+    
+    return print(f"Successfully execute {rwdfile} for required rwo files.")
+    
         
 
 
