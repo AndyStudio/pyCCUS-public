@@ -55,6 +55,10 @@ class pycmgcontrol():
         elif self.cmg_version == 'ese-ts1win-v2023.20':
             exe_path='"C:\\Program Files\\CMG\\STARS\\2023.20\\Win_x64\\EXE\\st202320.exe"'
             cd_path = os.path.join(self.simfolder, self.batchfolder).rstrip('\\')
+
+        elif self.cmg_version == 'ese-ts2win-v2024.20':
+            exe_path='"C:\\Program Files\\CMG\\STARS\\2024.20\\Win_x64\\EXE\\st202420.exe"'
+            cd_path = os.path.join(self.simfolder, self.batchfolder).rstrip('\\')
                 
         elif self.cmg_version == 'stf-sherlock-v2020.10':
             exe_path = "/home/groups/s-ees/share/cees/software/x86_64_arch/CMG/2020.109/stars/2020.11/linux_x64/exe/st202011.exe" 
@@ -86,6 +90,10 @@ class pycmgcontrol():
 
         elif self.cmg_version == 'ese-ts1win-v2023.20':
             exe_path='"C:\\Program Files\\CMG\\GEM\\2023.20\\Win_x64\\EXE\\gm202320.exe"'
+            cd_path = os.path.join(self.simfolder, self.batchfolder).rstrip('\\')
+
+        elif self.cmg_version == 'ese-ts2win-v2024.20':
+            exe_path='"C:\\Program Files\\CMG\\GEM\\2024.20\\Win_x64\\EXE\\gm202420.exe"'
             cd_path = os.path.join(self.simfolder, self.batchfolder).rstrip('\\')
                 
         elif self.cmg_version == 'stf-sherlock-v2020.10':
@@ -151,6 +159,10 @@ class pycmgcontrol():
     #             cd_path = os.path.join(simfolder, batchfolder)
         elif self.cmg_version == 'ese-ts1win-v2023.20':
             exe_path='"C:\\Program Files\\CMG\\RESULTS\\2023.20\\Win_x64\\exe\\Report.exe"'
+            cd_path = os.path.join(self.simfolder, self.batchfolder).rstrip('\\')
+
+        elif self.cmg_version == 'ese-ts2win-v2024.20':
+            exe_path='"C:\\Program Files\\CMG\\RESULTS\\2024.20\\Win_x64\\exe\\Report.exe"'
             cd_path = os.path.join(self.simfolder, self.batchfolder).rstrip('\\')
                 
         elif self.cmg_version == 'stf-sherlock-v2020.10':
