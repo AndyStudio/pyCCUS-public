@@ -42,7 +42,15 @@ class pycmgcontrol():
         self.cmg2npy = None
         ##################################################
         # self.yr_after_shutin_disp = [5, 10]
-        
+        ##################################################
+        ##### Params to control rwo2npy steps ######
+        self.XY2arr_interp_method = "cubic"  # options = {‘linear’, ‘nearest’, ‘cubic’}
+        self.XY2arr_interp_num_x = 100
+        self.XY2arr_interp_num_y = 100
+        self.x_dir_key = 'X'
+        self.y_dir_key = 'Y'
+        ##################################################
+
 
 
 
@@ -54,10 +62,6 @@ class pycmgcontrol():
 
         elif self.cmg_version == 'ese-ts1win-v2023.20':
             exe_path='"C:\\Program Files\\CMG\\STARS\\2023.20\\Win_x64\\EXE\\st202320.exe"'
-            cd_path = os.path.join(self.simfolder, self.batchfolder).rstrip('\\')
-
-        elif self.cmg_version == 'ese-ts2win-v2024.20':
-            exe_path='"C:\\Program Files\\CMG\\STARS\\2024.20\\Win_x64\\EXE\\st202420.exe"'
             cd_path = os.path.join(self.simfolder, self.batchfolder).rstrip('\\')
                 
         elif self.cmg_version == 'stf-sherlock-v2020.10':
@@ -90,10 +94,6 @@ class pycmgcontrol():
 
         elif self.cmg_version == 'ese-ts1win-v2023.20':
             exe_path='"C:\\Program Files\\CMG\\GEM\\2023.20\\Win_x64\\EXE\\gm202320.exe"'
-            cd_path = os.path.join(self.simfolder, self.batchfolder).rstrip('\\')
-
-        elif self.cmg_version == 'ese-ts2win-v2024.20':
-            exe_path='"C:\\Program Files\\CMG\\GEM\\2024.20\\Win_x64\\EXE\\gm202420.exe"'
             cd_path = os.path.join(self.simfolder, self.batchfolder).rstrip('\\')
                 
         elif self.cmg_version == 'stf-sherlock-v2020.10':
@@ -160,10 +160,6 @@ class pycmgcontrol():
         elif self.cmg_version == 'ese-ts1win-v2023.20':
             exe_path='"C:\\Program Files\\CMG\\RESULTS\\2023.20\\Win_x64\\exe\\Report.exe"'
             cd_path = os.path.join(self.simfolder, self.batchfolder).rstrip('\\')
-
-        elif self.cmg_version == 'ese-ts2win-v2024.20':
-            exe_path='"C:\\Program Files\\CMG\\RESULTS\\2024.20\\Win_x64\\exe\\Report.exe"'
-            cd_path = os.path.join(self.simfolder, self.batchfolder).rstrip('\\')
                 
         elif self.cmg_version == 'stf-sherlock-v2020.10':
             exe_path = "/home/groups/s-ees/share/cees/software/x86_64_arch/CMG/2020.109/gem/2020.11/linux_x64/exe/gm202011.exe" 
@@ -193,6 +189,7 @@ class pycmgcontrol():
         SG_temp = self.cmg2npy
         self.PRES_flag = self.read_PRES_rwo2npy(case_name=case_name, save=True)
         self.cmg2npy = [SG_temp, self.cmg2npy]
+
         # Delete the rwo files
         if self.SG_flag and self.PRES_flag:
             try:
@@ -206,15 +203,22 @@ class pycmgcontrol():
 
     def read_SG_rwo2npy(self, case_name, save=True):
         cmgrst = pycmgresults()
+        cmgrst.XY2arr_interp_method = self.XY2arr_interp_method
+        cmgrst.XY2arr_interp_num_x = self.XY2arr_interp_num_x
+        cmgrst.XY2arr_interp_num_y = self.XY2arr_interp_num_y
+
         rwo_dir = os.path.join(self.simfolder, self.batchfolder, f'rwo_{case_name}')
 
         try:
-            SG_arr = cmgrst.rwo_reader2arr(folder=rwo_dir,
-                                            sim=case_name,
-                                            prop='SG',
-                                            layer_nums=self.layer_nums,
-                                            time_query=[f'Gas Saturation_{t}-Jan-01' for t in self.time_query])
+            x_new, y_new, SG_arr = cmgrst.rwo_reader2arr(folder=rwo_dir,
+                                                         sim=case_name,
+                                                         prop='SG',
+                                                         layer_nums=self.layer_nums,
+                                                         time_query=[f'Gas Saturation_{t}-Jan-01' for t in self.time_query],
+                                                         x_dir_key=self.x_dir_key, y_dir_key=self.y_dir_key)
             self.cmg2npy = SG_arr
+            self.cmg2npy_x_coord = x_new
+            self.cmg2npy_y_coord = y_new
             if save == True:
                 np.save(os.path.join(self.npy_folder, f'{case_name}_SG.npy'), SG_arr)
                 return True
@@ -229,15 +233,22 @@ class pycmgcontrol():
         
     def read_PRES_rwo2npy(self, case_name, save=True):
         cmgrst = pycmgresults()
+        cmgrst.XY2arr_interp_method = self.XY2arr_interp_method
+        cmgrst.XY2arr_interp_num_x = self.XY2arr_interp_num_x
+        cmgrst.XY2arr_interp_num_y = self.XY2arr_interp_num_y
+
         rwo_dir = os.path.join(self.simfolder, self.batchfolder, f'rwo_{case_name}')
 
         try:
-            PRES_arr = cmgrst.rwo_reader2arr(folder=rwo_dir,
-                                            sim=case_name,
-                                            prop='PRES',
-                                            layer_nums=self.layer_nums,
-                                            time_query=[f'Pressure_{t}-Jan-01' for t in self.time_query])
+            x_new, y_new, PRES_arr = cmgrst.rwo_reader2arr(folder=rwo_dir,
+                                                           sim=case_name,
+                                                           prop='PRES',
+                                                           layer_nums=self.layer_nums,
+                                                           time_query=[f'Pressure_{t}-Jan-01' for t in self.time_query],
+                                                           x_dir_key=self.x_dir_key, y_dir_key=self.y_dir_key)
             self.cmg2npy = PRES_arr
+            self.cmg2npy_x_coord = x_new
+            self.cmg2npy_y_coord = y_new
             if save == True:
                 np.save(os.path.join(self.npy_folder, f'{case_name}_PRES.npy'), PRES_arr)
                 return True
@@ -253,6 +264,10 @@ class pycmgcontrol():
         
     def read_VERDSPLGEO_rwo2npy(self, case_name, save=True):
         cmgrst = pycmgresults()
+        cmgrst.XY2arr_interp_method = self.XY2arr_interp_method
+        cmgrst.XY2arr_interp_num_x = self.XY2arr_interp_num_x
+        cmgrst.XY2arr_interp_num_y = self.XY2arr_interp_num_y
+
         rwo_dir = os.path.join(self.simfolder, self.batchfolder, f'rwo_{case_name}')
 
         ######################################################################################
@@ -269,13 +284,17 @@ class pycmgcontrol():
 
         try:
 
-            VERDSPLGEO_arr = cmgrst.rwo_reader2arr(folder=rwo_dir,
-                                            sim=case_name,
-                                            prop='Vertical Displacement from Geomechanics',
-                                            layer_nums=self.layer_nums,
-                                            time_query=[f'Vertical Displacement from Geomechanics_{t}-Jan-01' for t in self.time_query])
+            x_new, y_new, VERDSPLGEO_arr = cmgrst.rwo_reader2arr(folder=rwo_dir,
+                                                                 sim=case_name,
+                                                                 prop='Vertical Displacement from Geomechanics',
+                                                                 layer_nums=self.layer_nums,
+                                                                 time_query=[f'Vertical Displacement from Geomechanics_{t}-Jan-01' for t in self.time_query],
+                                                                 x_dir_key=self.x_dir_key, y_dir_key=self.y_dir_key)
 
             self.cmg2npy = VERDSPLGEO_arr
+            self.cmg2npy_x_coord = x_new
+            self.cmg2npy_y_coord = y_new
+            
             if save == True:
                 np.save(os.path.join(self.npy_folder, f"{case_name.split('.')[0]}_VERDSPLGEO.npy"), VERDSPLGEO_arr)
                 return True
