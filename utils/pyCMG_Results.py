@@ -196,7 +196,7 @@ class pycmgresults():
         return print(f'Reading {sim} property of {prop} is done in global var .....')
     
 
-    def rwo_reader2arr(self, folder, sim, prop, layer_nums, time_query, x_dir_key='X', y_dir_key='Y'):
+    def rwo_reader2arr(self, folder, sim, prop, layer_nums, time_query, x_dir_key, y_dir_key):
         """
         Goal: combine rwo_reader2df and rwodf2arr in a 4d (n,m,z,t) array for output.
 
