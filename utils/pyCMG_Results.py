@@ -160,9 +160,9 @@ class pycmgresults():
         x, y, values = df columns
         """
 
-        x = df[x_dir_key]
-        y = df[y_dir_key]
-        val = df[query]
+        x = df[x_dir_key].values
+        y = df[y_dir_key].values
+        val = df[query].values
 
         # Define grid
         xi = np.linspace(np.min(x), np.max(x), num_x)
